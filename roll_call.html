@@ -1,0 +1,319 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+#div_1{
+	position:absolute;
+	left:200px;
+	top:100px;
+	width:400px;
+	height:150px;
+	margin:2px;
+	border:solid 5px #FF0000;
+	font-size:100px;
+}
+#div_pic{
+	position:absolute;
+	left:700px;
+	top:100px;
+	width:200px;
+	height:150px;
+	/*border:solid 5px #FF0000;*/
+	font-size:100px;
+}
+#div_2{
+	position:absolute;
+	left:200px;
+	top:300px;
+	width:600px;
+	height:150px;
+	margin:2px;
+	border:solid 5px #FF0000;
+	font-size:100px;
+}
+#stop{
+	position:absolute;
+	left:450px;
+	top:500px;
+	width:200px;
+	height:100px;	
+	font-size:50px;
+}
+#start{
+	position:absolute;
+	left:200px;
+	top:500px;
+	width:200px;
+	height:100px;	
+	font-size:50px;
+}
+#div_left{
+	float:left;
+	width:800px;	
+	margin:20px;
+}
+#div_right{
+	width:800px;
+	float:left;
+	margin:20px;
+}
+#div_bottom{
+	width:800px;
+	float:left;
+	width:600px;
+	margin:auto;
+}
+#student_pic{
+	width:800px;
+	height:150px;
+	margin:2px;
+	border:solid 5px #FF0000;
+	font-size:100px;
+}
+#student_list{
+	position:absolute;
+	left:900px;
+	top:10px;
+	width:760px;
+	height:800px;
+	margin:2px;
+	/*border:solid 5px #FF0000;*/
+	font-size:100px;
+}
+#mytitle{
+	position:absolute;
+	left:200px;
+	top:10px;
+	width:600px;
+	height:70px;
+	margin:2px;
+	
+	font-size:60px;
+}
+.pic{
+	float:left;
+	width:80px;
+	height:100px;
+	margin:2px;
+}
+</style>
+<body>
+	<div id="mytitle">随机抽问系统</div>
+	<div id="">
+		<div id="div_1"></div>
+		<div id="div_pic"></div>
+	</div>
+	<input type="button" id="stop" name="stop" value="停止" onclick="mystop();" />
+	<input type="button" id="start" name="start" value="启动" onclick="mystart();" />
+	<div id="div_2">10秒后停止</div>
+	<div id="student_list"></div>
+</body>
+<script type="text/javascript">
+
+ 
+var t;
+var t1;
+var rd=-1;
+function mystart(){
+	document.getElementById("start").disabled=true;
+	document.getElementById("div_2").innerHTML=10;
+	myRandom();
+	countdown();
+}
+function myRandom(){
+	if(rd!=-1){
+		document.getElementById(student_1[rd]).src="./p/"+student_1[rd]+".jPG";
+	}
+	rd=parseInt(Math.random()*student.length);
+	////file:///E:/test/javascrtip_lesson/p/%E5%BE%90%E8%8E%89.jPG
+	document.getElementById("div_1").innerHTML=student[rd];
+	document.getElementById("div_pic").innerHTML="<img src='./p/"+student_1[rd]+".jPG' width=120 height=160 />";
+	//document.getElementById(student_1[rd]).style.border="solid 1px #FF0000";
+	//document.getElementById(student_1[rd]).style.width="8px";
+	//document.getElementById(student_1[rd]).style.height="10px";
+	//old
+	document.getElementById(student_1[rd]).src="./p/default.jpg";
+	t=window.setTimeout("myRandom()",100);
+}
+function countdown(){
+	document.getElementById("div_2").innerHTML=parseInt(document.getElementById("div_2").innerHTML)-1;
+	if(parseInt(document.getElementById("div_2").innerHTML)<=0){
+		window.clearTimeout(t);
+		document.getElementById("start").disabled=false;
+		addTolist();
+		return;
+	}
+	t1=window.setTimeout("countdown()",1000);
+}
+function mystop(){
+	window.clearTimeout(t);
+	window.clearTimeout(t1);
+	addTolist();
+	document.getElementById("start").disabled=false;
+	//document.getElementById("div_2").innerHTML="10";
+}
+function addTolist(){
+	//document.getElementById("student_id").innerHTML=student[rd]+"|"+student_1[rd];
+	//document.getElementById("student_list").innerHTML=student[rd]+"|"+student_1[rd];
+	document.getElementById("div_2").innerHTML=student_1[rd];
+}
+function pic_list(){
+	//div_pic
+	var string='';
+	for(var i=0;i<student_1.length;i++){
+		string=string+"<img class='pic' id='"+student_1[i]+"' src='./p/"+student_1[i]+".jPG'/>"
+	}
+	document.getElementById("student_list").innerHTML=string;
+}
+
+//把学号填在此就行了
+var student=new Array(
+"李凤佩",
+"朱韵洁",
+"杨颖佳",
+"陈胜男",
+"郑伟功",
+"李金山",
+"付圻",
+"杨昌静",
+"王加平",
+"熊成斌",
+"赵仕杰",
+"欧宇",
+"蒋竟",
+"马倩",
+"何谦",
+"李锐",
+"付昶",
+"邓波",
+"宋炆霖",
+"王杰",
+"王磊",
+"赵小明",
+"文艺",
+"李慧",
+"徐荣梅",
+"徐权",
+"陈思言",
+"陶虹妃",
+"杨波",
+"钟剑锋",
+"张忠顺",
+"陈丹艳",
+"张云龙",
+"李雅兰",
+"陈吉祥",
+"周雨薇",
+"樊芯铭",
+"唐刚",
+"何梦乙",
+"罗亚梅",
+"屈小辉",
+"孙彤",
+"徐莉",
+"陈婷",
+"谢鹏",
+"谭星",
+"温仕洪",
+"高升",
+"李丹",
+"田燕",
+"刘珏琳",
+"周敏",
+"付佳丽",
+"石金梅",
+"陈锦伟",
+"陈跃",
+"张宁",
+"宫佳宝",
+"杨淑涵",
+"赵朝建",
+"李春蕾",
+"何晓霞",
+"陈尧",
+"刘磊",
+"陈威",
+"李春霖",
+"杨龙",
+"江国庆",
+"占文文",
+"程吕帅",
+"张琪",
+"赵敏"
+);
+var student_1=new Array(
+"201344901001",
+"201344901004",
+"201344901005",
+"201344901006",
+"201344901007",
+"201344901008",
+"201344901010",
+"201344901011",
+"201344901012",
+"201344901013",
+"201344901014",
+"201344901016",
+"201344901017",
+"201344901018",
+"201344901019",
+"201344901022",
+"201344901023",
+"201344901025",
+"201344901026",
+"201344901027",
+"201344901030",
+"201344901032",
+"201344901033",
+"201344901034",
+"201344901035",
+"201344901036",
+"201344901037",
+"201344901038",
+"201344901039",
+"201344901041",
+"201344901042",
+"201344901043",
+"201344901044",
+"201344901045",
+"201344901046",
+"201344901047",
+"201344901048",
+"201344901049",
+"201344901050",
+"201344901051",
+"201344901052",
+"201344901053",
+"201344901054",
+"201344901055",
+"201344901056",
+"201344901057",
+"201344901058",
+"201344901059",
+"201344901060",
+"201344901061",
+"201344901062",
+"201344901063",
+"201344901064",
+"201344901065",
+"201344901066",
+"201344901067",
+"201344901068",
+"201344901069",
+"201344901070",
+"201344901071",
+"201344901073",
+"201344901074",
+"201344901075",
+"201344901076",
+"201344901077",
+"201344901078",
+"201344901079",
+"201344901080",
+"201344901082",
+"201344901083",
+"201344901084",
+"201344901085"
+);
+var student_selected=new Array(
+);
+pic_list();
+</script>
